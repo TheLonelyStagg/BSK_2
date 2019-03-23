@@ -27,12 +27,13 @@ namespace Program
 
             //po za tym że zadanie 1, 2, 3, to jeszcze dobrze żeby były opcje na konwersji binarnego pliku na tekstowy, tekstowego na binarny i wypisania zawartosci binarnego 
 
-            while(true)
+            while (true)
             {
                 Console.Clear();
                 Console.WriteLine("1. ZADANIE 1 - Random Generator");
                 Console.WriteLine("2. ZADANIE 2 - Synchronous Stream Cipher");
-                Console.WriteLine("3. ZADANIE 3 - Synchronous Stream Cipher");
+                Console.WriteLine("3. ZADANIE 3 - Cipher Text Autokey");
+                Console.WriteLine("4. Obsługa plików");
 
                 String c = Console.ReadLine();
                 switch (c)
@@ -48,9 +49,14 @@ namespace Program
                     case "3":
                         Zadanie3();
                         break;
+                    case "4":
+                        ObslugaPlikow();
+                        break;
+                    default:
+                        break;
                 }
             }
-            
+
         }
 
         //--------------------------------------------------------- ZADANIE 1 - Random Generator ------------------------------------------------------------------
@@ -71,7 +77,7 @@ namespace Program
 
         static void RandomGenerator(string function, string seed, int n)
         {
-            
+
             if (function.Length != seed.Length)
             {
                 Console.WriteLine("Błąd! Seed musi być tej samej długości co funkcja.");
@@ -131,7 +137,7 @@ namespace Program
                 Console.WriteLine("3. Powrót");
                 String c = Console.ReadLine();
 
-                switch(c)
+                switch (c)
                 {
                     case "1":
                         Console.Clear();
@@ -161,10 +167,10 @@ namespace Program
                         string output = Console.ReadLine();
 
                         Console.WriteLine("Podaj funkcję wielomianową w postaci zero-jedynkowej (np. 101):");
-                         function = Console.ReadLine();
+                        function = Console.ReadLine();
 
                         Console.WriteLine("Podaj ziarno (np 110):");
-                         seed = Console.ReadLine();
+                        seed = Console.ReadLine();
 
                         SynchronousStreamCipher_File(input, output, function, seed);
 
@@ -290,7 +296,7 @@ namespace Program
                 actualMemo[i] = (int)Char.GetNumericValue(seed, i);
             }
 
-            
+
             //Przy X'sie na wejsciu jako ciag do zakodowania/odkodowania wypluwajacy wynik do Y'eka
             for (i = 0; i < X.Length; i++)
             {
@@ -305,7 +311,7 @@ namespace Program
                 Array.Copy(actualMemo, 0, actualMemo, 1, actualMemo.Length - 1);
                 actualMemo[0] = tmp;
             }
-            
+
 
             return Y;
         }
@@ -322,6 +328,126 @@ namespace Program
 
             //^ przy tych oczywiscie tez pytanie o jakis seed i funkcje
             //^^ do zakodowywania CiphertextAutokeyEncrypt, do rozkodowania CiphertextAutokeyDecrypt
+
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Zadanie 3 - Cipher Text Autokey");
+                Console.WriteLine("1. Konsolowo");
+                Console.WriteLine("2. Z pliku");
+                Console.WriteLine("3. Powrót");
+                String c = Console.ReadLine();
+
+                switch (c)
+                {
+                    case "1":
+                        {
+                            Console.Clear();
+                            Console.WriteLine("1. Szyfruj");
+                            Console.WriteLine("2. Odszyfruj");
+                            Console.WriteLine("3. Powrót");
+                            String c1 = Console.ReadLine();
+                            switch (c1)
+                            {
+                                case "1":
+
+                                    Console.Clear();
+                                    Console.WriteLine("Podaj ciąg wejściowy (np. 101010):");
+                                    string X = Console.ReadLine();
+
+                                    Console.WriteLine("Podaj funkcję wielomianową w postaci zero-jedynkowej (np. 101):");
+                                    string function = Console.ReadLine();
+
+                                    Console.WriteLine("Podaj ziarno (np 110):");
+                                    string seed = Console.ReadLine();
+
+                                    string function_result = CiphertextAutokeyEncrypt(X, function, seed);
+                                    Console.WriteLine(function_result);
+
+                                    Console.WriteLine("Naciśnij klawisz aby kontynuować...");
+                                    Console.ReadKey();
+                                    break;
+                                case "2":
+
+                                    Console.Clear();
+                                    Console.WriteLine("Podaj ciąg wejściowy (np. 101010):");
+                                    X = Console.ReadLine();
+
+                                    Console.WriteLine("Podaj funkcję wielomianową w postaci zero-jedynkowej (np. 101):");
+                                    function = Console.ReadLine();
+
+                                    Console.WriteLine("Podaj ziarno (np 110):");
+                                    seed = Console.ReadLine();
+
+                                    function_result = CiphertextAutokeyDecrypt(X, function, seed);
+                                    Console.WriteLine(function_result);
+
+                                    Console.WriteLine("Naciśnij klawisz aby kontynuować...");
+                                    Console.ReadKey();
+                                    break;
+                                case "3":
+                                    break;
+                            }
+                        }
+                        break;
+                    case "2":
+                        Console.Clear();
+                        Console.WriteLine("1. Szyfruj");
+                        Console.WriteLine("2. Odszyfruj");
+                        Console.WriteLine("3. Powrót");
+                        String c2 = Console.ReadLine();
+                        switch (c2)
+                        {
+                            case "1":
+                                Console.Clear();
+
+                                Console.WriteLine("Podaj nazwę pliku - wejściowego:");
+                                string input = Console.ReadLine();
+
+                                Console.WriteLine("Podaj nazwę pliku - wyjściowego:");
+                                string output = Console.ReadLine();
+
+                                Console.WriteLine("Podaj funkcję wielomianową w postaci zero-jedynkowej (np. 101):");
+                                string function = Console.ReadLine();
+
+                                Console.WriteLine("Podaj ziarno (np 110):");
+                                string seed = Console.ReadLine();
+
+                                CiphertextAutokeyEncrypt_File(input, output, function, seed);
+
+                                Console.WriteLine("Naciśnij klawisz aby kontynuować...");
+                                Console.ReadKey();
+                                break;
+                            case "2":
+                                Console.Clear();
+
+                                Console.WriteLine("Podaj nazwę pliku - wejściowego:");
+                                input = Console.ReadLine();
+
+                                Console.WriteLine("Podaj nazwę pliku - wyjściowego:");
+                                output = Console.ReadLine();
+
+                                Console.WriteLine("Podaj funkcję wielomianową w postaci zero-jedynkowej (np. 101):");
+                                function = Console.ReadLine();
+
+                                Console.WriteLine("Podaj ziarno (np 110):");
+                                seed = Console.ReadLine();
+
+                                CiphertextAutokeyDecrypt_File(input, output, function, seed);
+
+                                Console.WriteLine("Naciśnij klawisz aby kontynuować...");
+                                Console.ReadKey();
+                                break;
+                            case "3":
+                                break;
+                        }
+
+                        break;
+                    case "3":
+                        return;
+                }
+
+            }
         }
 
         static void CiphertextAutokeyEncrypt_File(string inputFileName, string outputFileName, string function, string seed)
@@ -524,7 +650,7 @@ namespace Program
                 actualMemo[i] = (int)Char.GetNumericValue(seed, i);
             }
 
-            
+
             //Przy X'sie na wejsciu jako ciag do zakodowania wypluwajacy wynik do Y'eka
             for (i = 0; i < X.Length; i++)
             {
@@ -545,7 +671,7 @@ namespace Program
             return Y;
         }
 
-        static string CiphertextAutokeyDecrypt(string Y, string outputFileName, string function, string seed)
+        static string CiphertextAutokeyDecrypt(string Y, string function, string seed)
         {
             if (function.Length != seed.Length)
             {
@@ -572,7 +698,7 @@ namespace Program
                 actualMemo[i] = (int)Char.GetNumericValue(seed, i);
             }
 
-            
+
             //Przy Y'eku na wejsciu jako ciag do odkodowania wypluwajacy wynik do X'a
             for (i = 0; i < Y.Length; i++)
             {
@@ -596,12 +722,12 @@ namespace Program
 
         //--------------------------------------------------------- DODATKOWA FUNKCJONALNOSC---------------------------------------------------------------------
 
-        static void PrintBinaryFileContentBitByBit (string inputFileName)
+        static void PrintBinaryFileContentBitByBit(string inputFileName)
         {
-            using (BinaryReader b = new BinaryReader( File.Open(inputFileName, FileMode.Open)) )
+            using (BinaryReader b = new BinaryReader(File.Open(inputFileName, FileMode.Open)))
             {
                 int pos = 0;
-                
+
                 int length = (int)b.BaseStream.Length;
                 while (pos < length)
                 {
@@ -611,16 +737,16 @@ namespace Program
                         int valueOfBit = ((v & (1 << i)) == 0) ? 0 : 1;
                         Console.Write(valueOfBit + " ");
                     }
-                    Console.Write(" :"+ v + "\n");
-                    
+                    Console.Write(" :" + v + "\n");
+
                     pos += sizeof(byte);
                 }
             }
         }
 
-        static void CreateTxtFileFromBinaryBitByBit (string inputFileName, string outputFileName)
+        static void CreateTxtFileFromBinaryBitByBit(string inputFileName, string outputFileName)
         {
-            using (StreamWriter wr = new StreamWriter(outputFileName,false))
+            using (StreamWriter wr = new StreamWriter(outputFileName, false))
             using (BinaryReader b = new BinaryReader(File.Open(inputFileName, FileMode.Open)))
             {
                 int pos = 0;
@@ -655,7 +781,7 @@ namespace Program
                     {
                         break;
                     }
-                    string[] breakedLine = line.Split(' '); 
+                    string[] breakedLine = line.Split(' ');
                     //mamy stringa wiec:
                     byte outByte = 0;
                     for (int i = 0; i < 8; i++)
@@ -669,6 +795,60 @@ namespace Program
                 }
             }
             Console.WriteLine("Przekonwertowano do binarnego \"{0}\".", outputFileName);
+        }
+
+        static void ObslugaPlikow()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("1. Wypisz plik binarny bit po bicie");
+                Console.WriteLine("2. Stworz plik tekstowy z pliku binarnego bit po bicie");
+                Console.WriteLine("3. Stworz plik binarny z pliku tekstowego");
+                Console.WriteLine("4. Powrót");
+                String c = Console.ReadLine();
+
+                switch (c)
+                {
+                    case "1":
+                        Console.Clear();
+                        Console.WriteLine("Podaj nazwę pliku, który chcesz wypisać");
+                        string inputFileName = Console.ReadLine();
+                        PrintBinaryFileContentBitByBit(inputFileName);
+
+                        Console.WriteLine("Naciśnij klawisz aby kontynuować...");
+                        Console.ReadKey();
+                        break;
+                    case "2":
+
+                        Console.Clear();
+                        Console.WriteLine("Podaj nazwę pliku wejściowego");
+                        inputFileName = Console.ReadLine();
+
+                        Console.WriteLine("Podaj nazwę pliku wyjściowego");
+                        string outputFileName = Console.ReadLine();
+
+                        CreateTxtFileFromBinaryBitByBit(inputFileName, outputFileName);
+                        Console.WriteLine("Naciśnij klawisz aby kontynuować...");
+                        Console.ReadKey();
+
+                        break;
+                    case "3":
+                        Console.Clear();
+                        Console.WriteLine("Podaj nazwę pliku wejściowego");
+                        inputFileName = Console.ReadLine();
+
+                        Console.WriteLine("Podaj nazwę pliku wyjściowego");
+                         outputFileName = Console.ReadLine();
+
+                        CreateBinaryFileFromTextBitByBit(inputFileName, outputFileName);
+                        Console.WriteLine("Naciśnij klawisz aby kontynuować...");
+                        Console.ReadKey();
+                        break;
+                    case "4":
+                        return;
+                }
+            }
         }
     }
 }
