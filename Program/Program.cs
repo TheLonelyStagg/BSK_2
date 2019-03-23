@@ -28,6 +28,7 @@ namespace Program
             //po za tym że zadanie 1, 2, 3, to jeszcze dobrze żeby były opcje na konwersji binarnego pliku na tekstowy, tekstowego na binarny i wypisania zawartosci binarnego 
         }
 
+        //--------------------------------------------------------- ZADANIE 1 - Random Generator ------------------------------------------------------------------
         //TODO:
         static void Zadanie1()
         {
@@ -84,6 +85,7 @@ namespace Program
             }
         }
 
+        //--------------------------------------------------------- ZADANIE 2 - Synchronous Stream Cipher ---------------------------------------------------------
         //TODO:
         static void Zadanie2()
         {
@@ -228,6 +230,7 @@ namespace Program
             return Y;
         }
 
+        //--------------------------------------------------------- ZADANIE 3 - Synchronous Stream Cipher ---------------------------------------------------------
         //TODO:
         static void Zadanie3()
         {
@@ -510,6 +513,8 @@ namespace Program
 
             return X;
         }
+
+        //--------------------------------------------------------- DODATKOWA FUNKCJONALNOSC---------------------------------------------------------------------
 
         static void PrintBinaryFileContentBitByBit (string inputFileName)
         {
