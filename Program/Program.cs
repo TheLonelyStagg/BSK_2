@@ -24,8 +24,33 @@ namespace Program
             CreateTxtFileFromBinaryBitByBit("wynik3.bin", "wynik3.txt");
             Console.ReadKey();
             */
-            
+
             //po za tym że zadanie 1, 2, 3, to jeszcze dobrze żeby były opcje na konwersji binarnego pliku na tekstowy, tekstowego na binarny i wypisania zawartosci binarnego 
+
+            while(true)
+            {
+                Console.Clear();
+                Console.WriteLine("1. ZADANIE 1 - Random Generator");
+                Console.WriteLine("2. ZADANIE 2 - Synchronous Stream Cipher");
+                Console.WriteLine("3. ZADANIE 3 - Synchronous Stream Cipher");
+
+                String c = Console.ReadLine();
+                switch (c)
+                {
+                    case "1":
+                        Zadanie1();
+                        Console.WriteLine("Naciśnij klawisz aby kontynuować...");
+                        Console.ReadKey();
+                        break;
+                    case "2":
+                        Zadanie2();
+                        break;
+                    case "3":
+                        Zadanie3();
+                        break;
+                }
+            }
+            
         }
 
         //--------------------------------------------------------- ZADANIE 1 - Random Generator ------------------------------------------------------------------
@@ -94,9 +119,64 @@ namespace Program
             //    //przy zakodowaniu: chcesz 1. test.bin; 2. test2.bin ; 3. test3.bin ; 4. inny (mozliwosc podaniawlasnej nazwy)
             //        //nastepnie nazwa pliku wyjsciowego
             //    //przy odkodowaniu: podaj nazwe pliku zakodowanego i nazwe pliku wyjsciowego
-                
+
             //^ przy tych oczywiscie tez pytanie o jakis seed i funkcje
             //^^ do zakodowywania i rozkodowywania bedzie ten sam algorytm wykorzystywany/funkcja czyli SynchronousStreamCipher
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Zadanie 2 - Synchronous Stream Cipher");
+                Console.WriteLine("1. Konsolowo");
+                Console.WriteLine("2. Z pliku");
+                Console.WriteLine("3. Powrót");
+                String c = Console.ReadLine();
+
+                switch(c)
+                {
+                    case "1":
+                        Console.Clear();
+                        Console.WriteLine("Podaj ciąg wejściowy (np. 101010):");
+                        string X = Console.ReadLine();
+
+                        Console.WriteLine("Podaj funkcję wielomianową w postaci zero-jedynkowej (np. 101):");
+                        string function = Console.ReadLine();
+
+                        Console.WriteLine("Podaj ziarno (np 110):");
+                        string seed = Console.ReadLine();
+
+                        string function_result = SynchronousStreamCipher(X, function, seed);
+                        Console.WriteLine(function_result);
+
+                        Console.WriteLine("Naciśnij klawisz aby kontynuować...");
+                        Console.ReadKey();
+
+                        break;
+                    case "2":
+                        Console.Clear();
+
+                        Console.WriteLine("Podaj nazwę pliku - wejściowego:");
+                        string input = Console.ReadLine();
+
+                        Console.WriteLine("Podaj nazwę pliku - wyjściowego:");
+                        string output = Console.ReadLine();
+
+                        Console.WriteLine("Podaj funkcję wielomianową w postaci zero-jedynkowej (np. 101):");
+                         function = Console.ReadLine();
+
+                        Console.WriteLine("Podaj ziarno (np 110):");
+                         seed = Console.ReadLine();
+
+                        SynchronousStreamCipher_File(input, output, function, seed);
+
+                        Console.WriteLine("Naciśnij klawisz aby kontynuować...");
+                        Console.ReadKey();
+
+                        break;
+                    case "3":
+                        return;
+                }
+
+            }
         }
 
         static void SynchronousStreamCipher_File(string inputFileName, string outputFileName, string function, string seed)
