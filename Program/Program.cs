@@ -127,7 +127,7 @@ namespace Program
                 Console.Clear();
                 Console.WriteLine("Zadanie 2 - Synchronous Stream Cipher");
                 Console.WriteLine("1. Konsolowo");
-                Console.WriteLine("2. Z pliku");
+                Console.WriteLine("2. Z pliku binarnego");
                 Console.WriteLine("3. Powrót");
                 String c = Console.ReadLine();
 
@@ -135,7 +135,7 @@ namespace Program
                 {
                     case "1":
                         Console.Clear();
-                        Console.WriteLine("Podaj ciąg wejściowy (np. 101010):");
+                        Console.WriteLine("Podaj ciąg do zakodowania/odkodowania (np. 101010):");
                         string X = Console.ReadLine();
 
                         Console.WriteLine("Podaj funkcję wielomianową w postaci zero-jedynkowej (np. 101):");
@@ -154,7 +154,7 @@ namespace Program
                     case "2":
                         Console.Clear();
 
-                        Console.WriteLine("Podaj nazwę pliku - wejściowego:");
+                        Console.WriteLine("Podaj nazwę pliku do zakodowania/rozkodowania (wejściowego):");
                         string input = Console.ReadLine();
 
                         Console.WriteLine("Podaj nazwę pliku - wyjściowego:");
